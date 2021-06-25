@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="modal-content col-md-6 offset-md-3">
+        <div class="modal-header">
+            <div class="icon-box">
+                <i class="material-icons"></i>
+            </div>				
+            <h4 class="modal-title w-100">Success</h4>	
+        </div>
+        <div class="modal-body">
+            <p class="text-center">Dear <span class="username">{{user.userName}}</span>, Your Indent has been placed Successfully with Indent Number : <b>{{orderId}}</b></p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success btn-block" data-dismiss="modal" [routerLink]="['/catalogue']">OK</button>
+        </div>
+    </div>
+</div>
+

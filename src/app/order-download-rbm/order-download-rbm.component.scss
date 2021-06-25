@@ -1,0 +1,14 @@
+.cnt_body {
+  height: 77.5vh;
+}
+.fou_bt:focus {
+  outline: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.d_abmorder {
+  margin: auto;
+  text-align: center;
+  padding: 50px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}

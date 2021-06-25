@@ -1,0 +1,181 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 fileupload_section">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>Admin Upload</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="row register">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 register-left">
+                    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+                        <mdb-carousel-item>
+                            <div class="view w-100">
+                                <img class="d-block w-100" height="280px" src="assets/images/Titan_neo_mood_2_2.jpg"
+                                    alt="slide">
+                            </div>
+                        </mdb-carousel-item>
+                        <mdb-carousel-item>
+                            <div class="view w-100">
+                                <img class="d-block w-100" height="280px" src="assets/images/Titan_neo_mood_1_2.jpg"
+                                    alt="slide">
+                            </div>
+                        </mdb-carousel-item>
+                        <mdb-carousel-item>
+                            <div class="view w-100">
+                                <img class="d-block w-100" height="280px" src="assets/images/Titan_neo_mood_3_3.jpg"
+                                    alt="slide">
+                            </div>
+                        </mdb-carousel-item>
+                    </mdb-carousel>
+                </div>
+                <div class="col-md-8 register-right">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel">
+                            <h4 class="register-heading">Admin Upload</h4>
+                            <!-- <div class="pb-3" *ngIf="adminSuccessMsg">{{adminSuccessMsg}}</div> -->
+                            <form [formGroup]="adminSubmitForm" (submit)="userRegister()">
+                                <div class="row register-form">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>User Name <span class="text-danger">*</span></label>
+                                            <input type="text" formControlName="userName" class="form-control"
+                                                placeholder="User name" value="" />
+                                                <div *ngIf="f.userName.errors && (formSubmitted || f.userName.touched)" class="valError">
+                                                    <div *ngIf="f.userName.errors.required">Please Type User Name.</div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email Id <span class="text-danger">*</span></label>
+                                            <input type="email" formControlName="emailId" class="form-control"
+                                                placeholder="Email id" value="" />
+                                                <div *ngIf="f.emailId.errors && (formSubmitted || f.emailId.touched)" class="valError">
+                                                    <div *ngIf="f.emailId.errors.required">Please Type User Email.</div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Login Id <span class="text-danger">*</span></label>
+                                            <input type="text" formControlName="loginId" class="form-control"
+                                                placeholder="Login id" value="" />
+                                                <div *ngIf="f.loginId.errors && (formSubmitted || f.loginId.touched)" class="valError">
+                                                    <div *ngIf="f.loginId.errors.required">Please Type User Email.</div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Business Type <span class="text-danger">*</span></label>
+                                            <select class="form-control" formControlName="businessType">
+                                                <option value="">Please select Business Type
+                                                </option>
+                                                <option>Admin 1</option>
+                                                <option>Admin Phone Number</option>
+                                                <option>Admin Phone Number 2</option>
+                                            </select>
+                                            <div *ngIf="f.businessType.errors && (formSubmitted || f.businessType.touched)" class="valError">
+                                                <div *ngIf="f.businessType.errors.required">Please select Business Type.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Company Name <span class="text-danger">*</span></label>
+                                            <input type="text" formControlName="companyName" class="form-control"
+                                                placeholder="Company Name" value="" />
+                                                <div *ngIf="f.companyName.errors && (formSubmitted || f.companyName.touched)" class="valError">
+                                                    <div *ngIf="f.companyName.errors.required">Please Type Company Name.</div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status <span class="text-danger">*</span></label>
+                                            <select class="form-control" formControlName="status" >
+                                                <option value="">Please select Status</option>
+                                                <option> 1 </option>
+                                                <option> 2 </option>
+                                                <option> 3 </option>
+                                            </select>
+                                            <div *ngIf="f.status.errors && (formSubmitted || f.status.touched)" class="valError">
+                                                <div *ngIf="f.status.errors.required">Please Select Status.</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password <span class="text-danger">*</span></label>
+                                            <input type="password" formControlName="password" class="form-control"
+                                                placeholder="Password *" value="" />
+                                                <div *ngIf="f.password.errors && (formSubmitted || f.password.touched)" class="valError">
+                                                    <div *ngIf="f.password.errors.required">Please Type Password.</div>
+                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <br>
+                                            <input type="submit" class="btnRegister" value="Register User" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 1%;padding: 0 2% 0 2%;">
+        <div class="mini_cart" #TABLE>
+            <input type="text" style="padding:8px; margin:15px; width:30%;" placeholder="Search..." />
+
+            <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px;"
+                [rows]="indentDetails" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="40"
+                [scrollbarV]="true" [sorts]="[{prop: 'name', dir: 'desc'}]">
+
+                <ngx-datatable-column name="Indent Number">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.indentNumber}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Indent Date">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.indentDate}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="ABM Code">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.abmcode}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="ABM Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.abmname}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="QTY">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.qty}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="UCP">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.ucp}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Action" prop="id" [sortable]="false">
+                    <ng-template let-rowIndex="rowIndex" let-id="value" ngx-datatable-cell-template>
+                        <button class="btn btn-sm btn-danger">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+        </div>
+    </div>
+</div>
+
+<!--Footer Part-->
+<app-footer></app-footer>

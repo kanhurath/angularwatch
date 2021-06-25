@@ -1,0 +1,53 @@
+<div class="container dark-grey-text mt-1">
+    <div class="row wow fadeIn">
+        <div class="col-md-12 mb-2 rf_part">
+            <div class="container pt-4">
+                <div class="success_msg pb-3" *ngIf="feedbackSuccessMsg">{{feedbackSuccessMsg}}</div>
+                <form [formGroup]="feedbackForm" (submit)="submitFeedback()">
+                    <div class="form-row">
+                        <div class="form-group col-md-3 pt-2">
+                            <span class="cont_style">Product Rating</span>
+                        </div>
+                        <div class="form-group col-md-8 mr-1">
+                            <div class="row">
+                                <fieldset class="rating">
+                                    <ng-container class="rating-list" *ngFor="let star of stars; let i = index;">
+                                        <input (click)="setRating(star)" id="star{{star}}" type="radio" name="rating"
+                                            value="{{star}}" />
+                                        <label [ngClass]="{'full': (i%2 == 0), 'half': (i%2 != 0)}"
+                                            for="star{{star}}"></label>
+                                    </ng-container>
+                                </fieldset>
+                            </div>
+                            <div class="row">
+                                <div class="d-flex mb-3 mt-3 rating_name">
+                                    <div class="p-2">Satisfactory</div>
+                                    <div class="p-2 offset-sm-4 excellent">Excellent</div>
+                                </div>
+                            </div>
+                            <div *ngIf="f.rating.errors && formSubmitted" class="valError">
+                                <div *ngIf="f.rating.errors.required">Please give rating.</div>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="form-row">
+                        <div class="form-group col-sm-5 offset-sm-2">
+                            <div class="align-self-center mx-auto col text-center">
+                                <button [disabled]="isProcessing" class="btn btn-primary" type="submit">
+                                    <span *ngIf="isProcessing" class="spinner-border spinner-border-sm mr-1"></span>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-8 coll_fedback">
+                            Please click here for <a [routerLink]="['/collectionl-fedback']">Collection feedback</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

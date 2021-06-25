@@ -1,0 +1,380 @@
+<!--Header Part-->
+<app-header></app-header>
+<main class="container-fluid pt-1 main_product">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/catalogue']">Catalogue</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;"><strong>{{variantNumber}}</strong></a></li>
+      </ol>
+    </nav>
+  </div>
+  <div *ngIf="!isLoading" class="dark-grey-text mt-2 ml-4 mr-4">
+    <div class="row wow fadeIn">
+      <div class="col-md-7 mb-4">
+        <!--Medium Product Images-->
+        <div class="row">
+          <div class="col-md-12">
+            <lib-ngx-image-zoom [thumbImage]=mainImage [fullImage]=mainImage [magnification]="1"
+              [enableScrollZoom]="true">
+            </lib-ngx-image-zoom>
+          </div>
+        </div>
+        <!--Small Product Images-->
+        <div class="row mt-5" style="cursor: pointer;">
+          <div class="col-xs" (click)="showImage(image)" *ngFor="let image of singleProduct.images">
+            <img src="{{image}}" alt="" style="width: 90px;">
+            <!-- <img src="{{image}}" alt="" style="width: 90px;" onerror="this.src='assets/images/no_images.png';"> -->
+          </div>
+          <div class="col-xs" *ngIf="videos.length">
+            <img src="assets/images/video.png" alt="" style="width: 90px;" (click)="showVideoModal(gDriveVideo)">
+          </div>
+          <div class="col-xs" *ngIf="pdfs.length">
+            <img src="assets/images/pdf.png" alt="" style="width: 90px;" (click)="showPdfModal(gDrivePdf)">
+          </div>
+          <!-- <div class="col-xs">
+            <img src="assets/images/pdf.png" alt="" style="width: 90px;" (click)="showPdfModal(gDrivePdf)">
+          </div> -->
+        </div>
+      </div>
+      <div class="col-md-5 mb-4">
+        <!--All Categorys Contains-->
+
+        <!--Watch Category Contain-->
+        <div class="row" *ngIf="singleProduct.watchSpecifications">
+          <div class="container">
+            <table class="table table-borderless ph_tab">
+              <tr>
+                <td class="header_text">{{singleProduct.watchSpecifications[0].brand}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="des_text_align">{{singleProduct.watchSpecifications[0].description}}</span>
+                  <div class="ds_cont">{{variantNumber}}</div>
+                </td>
+              </tr>
+            </table>
+            <table class="table">
+              <tr>
+                <td>
+                  <span class="cont_style">Strap Material </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].strapMaterial }}
+                </td>
+                <td>
+                  <span class="cont_style">Strap Color </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].strapColour }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Case Material </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].caseMaterial }}
+                </td>
+                <td>
+                  <span class="cont_style">Watch Function </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].watchFunction }}
+                </td>
+
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Dial Color </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].dialColour }}
+                </td>
+                <td>
+                  <span class="cont_style">Price </span> <br />
+                  Rs.{{ singleProduct.watchSpecifications[0].price }}.00
+                </td>
+              </tr>
+              <tr *ngIf="moreSpecifData">
+                <td>
+                  <span class="cont_style">Collection </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].collection }}
+                </td>
+                <td>
+                  <span class="cont_style">Gender </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].gender }}
+                </td>
+              </tr>
+              <tr *ngIf="moreSpecifData">
+                <td>
+                  <span class="cont_style">Watch feature </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].watch_Feature }}
+                </td>
+                <td>
+                  <span class="cont_style">Case Size </span>
+                  <br />
+                  {{ singleProduct.watchSpecifications[0].caseColour }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="pointer" style="color: crimson" *ngIf="show" (click)="getMoreSpecifications()">
+                  See More...
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="pointer" style="color: crimson" *ngIf="showless"
+                  (click)="getLessSpecifications()">
+                  See Less...
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!--End Watch Category Contain-->
+
+        <!--Clock Category Contain-->
+        <div class="row" *ngIf="singleProduct.clockSpecifications">
+          <div class="container">
+            <table class="table table-borderless ph_tab">
+              <tr>
+                <td class="header_text">{{singleProduct.clockSpecifications[0].brand}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="des_text_align">{{singleProduct.clockSpecifications[0].description}}</span>
+                  <div class="ds_cont">{{variantNumber}}</div>
+                </td>
+              </tr>
+            </table>
+            <table class="table">
+              <tr>
+                <td>
+                  <span class="cont_style">Type </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].type }}
+                </td>
+                <td>
+                  <span class="cont_style">Watch Function </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].watchFunction }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Dial Color</span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].dial_Color }}
+                </td>
+                <td>
+                  <span class="cont_style">Dial Shape</span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].dial_Shape }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Body Color </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].body_Color }}
+                </td>
+                <td>
+                  <span class="cont_style">Price </span> <br />
+                  Rs.{{ singleProduct.clockSpecifications[0].ucp }}.00
+                </td>
+              </tr>
+              <tr *ngIf="moreSpecifData">
+                <td>
+                  <span class="cont_style">Collection </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].collection }}
+                </td>
+                <td>
+                  <span class="cont_style">With Glass </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].with_Glass }}
+                </td>
+              </tr>
+              <tr *ngIf="moreSpecifData">
+                <td>
+                  <span class="cont_style">Width (cm) </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].width }}
+                </td>
+                <td>
+                  <span class="cont_style">Height (cm) </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].height }}
+                </td>
+              </tr>
+              <tr *ngIf="moreSpecifData">
+                <td>
+                  <span class="cont_style">Frame Material </span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].frame_Material }}
+                </td>
+                <td>
+                  <span class="cont_style">Dial Diameter (cm)</span>
+                  <br />
+                  {{ singleProduct.clockSpecifications[0].dial_Diameter }}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="color: crimson" *ngIf="show" (click)="getMoreSpecifications()">
+                  See More...
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="color: crimson" *ngIf="showless" (click)="getLessSpecifications()">
+                  See Less...
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!--End Clock Category Contain-->
+
+        <!--Bracelet Category Contain-->
+        <div class="row" *ngIf="singleProduct.braceletSpecifications">
+          <div class="container">
+            <table class="table table-borderless ph_tab">
+              <tr>
+                <td class="header_text">{{singleProduct.braceletSpecifications[0].brand}}</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="des_text_align">{{singleProduct.braceletSpecifications[0].description}}</span>
+                  <div class="ds_cont">{{variantNumber}}</div>
+                </td>
+              </tr>
+            </table>
+            <table class="table">
+              <tr>
+                <td>
+                  <span class="cont_style">Collection </span>
+                  <br />
+                  {{ singleProduct.braceletSpecifications[0].collection }}
+                </td>
+                <td>
+                  <span class="cont_style">Price </span>
+                  <br />
+                  {{ singleProduct.braceletSpecifications[0].ucp }}.00
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Gender </span>
+                  <br />
+                  {{ singleProduct.braceletSpecifications[0].gender }}
+                </td>
+                <td>
+                  <span class="cont_style">Color </span>
+                  <br />
+                  {{ singleProduct.braceletSpecifications[0].colour }}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="cont_style">Product category </span>
+                  <br />
+                  {{ singleProduct.braceletSpecifications[0].productCategory }}
+                </td>
+                <td>
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!--End Bracelet Category Contain-->
+
+        <!--End All Categorys Contains-->
+        <!--Add to cart-->
+        <!-- <div class="form-row" *ngIf="userType && userType !== 'GUEST'"> -->
+        <div class="form-row" *ngIf="usersesionDetails.userGroupAccessResponse.orderAccess">
+          <div class="form-group col-md-5 mt-3 mb-5 ml-3" *ngIf="selfSelection !== 'SELF' ">
+            <span class="cont_style">Indent </span>
+            <form class="d-flex justify-content-left" (onSubmit)="addToCart()">
+              <input type="number" oninput="validity.valid||(value='');" min='1' [(ngModel)]="qty"
+                [ngModelOptions]="{ standalone: true }" aria-label="Search" class="form-control" style="width: 100px" />
+              <button class="btn btn-primary btn-md my-0 mx-3 p" type="submit" (click)="addToCart()">
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <!--Feedback-Review--->
+        <div class="row" *ngIf="usersesionDetails.userGroupAccessResponse.feedbackAccess">
+          <div class="container">
+            <app-review [variantNumber]="variantNumber"></app-review>
+          </div>
+        </div>
+        <!--Feedback-Review End--->
+      </div>
+    </div>
+  </div>
+</main>
+<!--Footer Part-->
+<app-footer></app-footer>
+
+<!--Pdf Modal Box-->
+<ng-template #gDrivePdf let-modal>
+  <div class="modal-xl">
+    <div class="modal-content" (contextmenu)="onRightClick()">
+      <div class="modal-header">
+        <!-- <div>{{selectedPdf.pdf_name}}</div> -->
+        <ol>
+          <li *ngFor="let pdf of pdfs; let i = index" routerLinkActive="active">
+            <a class="modal-title" (click)="selectPdf(i)"
+              [ngStyle]="{'color': activeProjectIndex === i ? 'blue' : 'black' }">{{pdf.pdf_name}}</a>
+          </li>
+        </ol>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pdf-viewer crossOrigin="anonymous" (contextmenu)="onRightClick()" [src]="selectedPdf.pdf_link" width="100%"
+          (error)="onError($event)">
+        </pdf-viewer>
+        <span class="text-center  pt-2">{{pdfErrorMsg}}</span>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--Pdf Modal Box End-->
+<!--Video Modal Box-->
+<ng-template #gDriveVideo let-modal>
+  <div class="modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>{{selectedVideo.video_name}}</div>
+        <!-- <ol>
+        <li *ngFor="let video of videos; let i = index">
+        <a class="modal-title" (click)="selectVideo(i)">{{video.video_name}}</a>
+        </li>
+        </ol> -->
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <video oncontextmenu="return false;" width="100%" height="340" controls controlsList="nodownload"
+            disablePictureInPicture>
+            <source crossOrigin="anonymous" [src]="selectedVideo.video_link" type="video/mp4">
+            <!-- <source src="assets/video/FIT OUT 45 sec.mp4" type="video/mp4"> -->
+          </video>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<!--Video Modal Box End-->

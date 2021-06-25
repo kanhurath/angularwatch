@@ -1,0 +1,64 @@
+.user_section {
+  position: relative;
+  min-height: 85vh;
+}
+.main_header {
+  padding: 12px 0 12px 20px;
+  margin: 0;
+}
+.md_box {
+  width: 80%;
+  height: 40vh;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 99;
+  top: 50%;
+  left: 50%;
+  bottom: 0;
+  right: 0;
+}
+.dealer-form {
+  // max-width: 300px;
+  width: 100%;
+  padding: 20px;
+  margin-top: -22px;
+}
+.select-dealer {
+  width: 100%;
+}
+.card-header {
+  color: #757575;
+  background: none;
+  border-bottom: none;
+  font-weight: 500;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.user_section .carousel .carousel-control-next-icon,
+.carousel .carousel-control-prev-icon {
+  display: none !important;
+}
+.gap_ra {
+  margin-right: 10px;
+  margin-top: -20px;
+}
+.checkboxes {
+  margin-top: -20px;
+}
+.checkboxgroup {
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem;
+}
+.checkboxgroup label {
+  display: block;
+}
+input[type="radio"] {
+  transform: scale(1.4);
+}
+@media screen and (max-width: 360px) {
+  .md_box {
+    height: auto;
+  }
+}

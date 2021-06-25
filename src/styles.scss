@@ -1,0 +1,112 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");
+@import url("../node_modules/bootstrap/dist/css/bootstrap.css");
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+/* You can add global styles to this file, and also import other style files */
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/themes/dark.scss";
+@import "~@swimlane/ngx-datatable/themes/bootstrap.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
+
+html,
+body {
+  height: 100%;
+}
+.unique-color {
+  background-color: #ffffff !important;
+}
+body {
+  margin: 0;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.navbar {
+  background-color: #fff;
+}
+.main_home .carousel-inner {
+  height: calc(100vh - 52px);
+}
+.user_section .carousel-inner {
+  max-height: calc(100vh - 98px) !important;
+}
+a .carousel-control-next-icon,
+a .carousel-control-prev-icon {
+  display: none !important;
+}
+.ngxImageZoomThumbnail {
+  width: 400px !important;
+  height: 400px !important;
+  cursor: zoom-in;
+  margin-left: -10% !important;
+}
+.breadcrumb {
+  margin-top: 52px;
+  background-color: #fff !important;
+  margin-bottom: 0 !important;
+}
+
+.breadcrumb li a {
+  color: #848484;
+}
+.fileupload_section {
+  height: calc(100vh - 100px);
+}
+.main_orders {
+  height: calc(100vh - 100px);
+  overflow: inherit;
+}
+.dropdown.show .dropdown-menu {
+  margin-top: 8px;
+}
+.mat-snack-bar-container {
+  margin-top: 80px !important;
+  margin-right: 10px !important;
+}
+.all_upload_error_msg{
+  max-height: 120px;
+  overflow: auto;
+}
+.page-footer {
+  height: fit-content !important;
+  width: 100%;
+}
+.ng2-pdf-viewer-container {
+  width: 100% !important;
+  overflow: hidden !important;
+}
+.ng2-pdf-viewer-container .pdfViewer .page,
+.ng2-pdf-viewer-container .pdfViewer .page .canvasWrapper,
+.ng2-pdf-viewer-container .pdfViewer .page .canvasWrapper canvas {
+  width: 100% !important;
+  height: 600px !important;
+}
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+.ngx-datatable.fixed-header
+  .datatable-header
+  .datatable-header-inner
+  .datatable-header-cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 455px) {
+  .ngxImageZoomThumbnail {
+    width: 220px !important;
+    height: 220px !important;
+  }
+  .ng2-pdf-viewer-container .pdfViewer .page,
+  .ng2-pdf-viewer-container .pdfViewer .page .canvasWrapper,
+  .ng2-pdf-viewer-container .pdfViewer .page .canvasWrapper canvas {
+    height: 180px !important;
+  }
+  .indent_title {
+    line-height: 2rem;
+  }
+}

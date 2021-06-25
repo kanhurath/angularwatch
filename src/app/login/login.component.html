@@ -1,0 +1,141 @@
+<div class="login_body">
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="row login-card">
+            <div class="col-sm-6">
+              <div class="card-body">
+                <div class="text-center" style="color:#007990;padding:10px; font-size: 16px;"><b>New Product Showcase
+                    Portal</b></div>
+                <div class="brand-wrapper text-center">
+                  <img src="assets/images/titanBrand-logo1.png" alt="logo" class="m_logo">
+                </div>
+                <div class="checkboxes text-center">
+                  <div class="checkboxgroup radio-warning">
+                    <label for="my_radio_button_id1">
+                      <input type="radio" name="selectedForm" class="gap_ra" id="my_radio_button_id1" value="emp"
+                        [(ngModel)]="selectedForm" />
+                      Employee</label>
+                  </div>
+                  <div class="checkboxgroup radio-warning">
+                    <label for="my_radio_button_id2">
+                      <input type="radio" name="selectedForm" class="gap_ra" id="my_radio_button_id2" value="guest"
+                        [(ngModel)]="selectedForm" />
+                      Guest User
+                    </label>
+                  </div>
+                </div>
+                <!--Employee User form-->
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="log_form" *ngIf="selectedForm == 'emp'">
+                  <span class="text-danger" *ngIf="error_message" [disabled]="error_message">{{errorMsg}}</span>
+                  <div class="form-group">
+                    <input type="text" formControlName="userId" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.userId.errors }" placeholder="UserId" autofocus />
+                    <div *ngIf="submitted && f.userId.errors" class="invalid-feedback">
+                      <div *ngIf="f.userId.errors.required"> UserId is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" formControlName="password" class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && f.password.errors }" placeholder="Password" autofocus />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                      <div *ngIf="f.password.errors.required">Password is required</div>
+                      <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-block login-btn mb-4">Login</button>
+                  </div>
+                </form>
+
+                <!--Guest User form-->
+                <form [formGroup]="guestForm" (ngSubmit)="onSubmitGuest()" class="guest_form"
+                  *ngIf="selectedForm == 'guest'">
+                  <span class="text-danger" *ngIf="guestLoginError">{{guestLoginError}}</span>
+                  <div class="form-group row" style="margin-left:0; margin-right: 0;">
+                    <div class="col-md-7 mob_cont">
+                      <input type="text" formControlName="mobileNumber" class="form-control"
+                        [ngClass]="{ 'is-invalid': guestsubmitted && glf.mobileNumber.errors }"
+                        placeholder="Mobile Number" maxlength="10" autofocus />
+                      <div *ngIf="guestsubmitted && glf.mobileNumber.errors" class="invalid-feedback">
+                        <div *ngIf="glf.mobileNumber.errors.required"> Mobile Number is required</div>
+                      </div>
+                    </div>
+                    <div class="col-md-5 btn_align">
+                      <button type=button (click)="sendOTP();"
+                        class="btn btn-outline-primary">Generate&nbsp;OTP</button>
+                    </div>
+                  </div>
+                  <div class="form-group row" *ngIf="otpReceived">
+                    <div class="col-md-12">
+                      <input type="password" formControlName="otpnum" class="form-control"
+                        [ngClass]="{ 'is-invalid': guestsubmitted && glf.otpnum.errors }" maxlength="6"
+                        placeholder="OTP" autofocus />
+                      <div *ngIf="guestsubmitted && glf.otpnum.errors" class="invalid-feedback">
+                        <div *ngIf="glf.otpnum.errors.required">OTP is required</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" (click)="this.btnClicked = 'validateOtp'"
+                      class="btn btn-block login-btn mb-4">Login</button>
+                  </div>
+                </form>
+                <!--Guest User form End-->
+                <div class="row">
+                  <div class="col-12">
+                    <button type="button" class="btn btn-outline-dark float-right help"
+                      (click)="showHelpModal(gDriveHelp)">Help</button>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-copyright text-center py-2">
+                © 2020 TITAN COMPANY LTD. ALL RIGHTS RESERVED.
+              </div>
+            </div>
+            <div class="col-sm-6" style="margin:0; padding:0;">
+              <img src="assets/images/logr_img.png" alt="card_image" class="login-card-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!--Help Modal Box-->
+<ng-template #gDriveHelp let-modal>
+  <div class="modal-xl">
+    <div class="modal-content" (contextmenu)="onRightClick($event)">
+      <div class="modal-header">
+        <h2>TITAN COMPANY LTD</h2>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4 style="background: #e2e2e2;padding: 5px;">CONTACT US</h4>
+        <div class="services-2 w-100 d-flex">
+          <div class="col-md-12">
+            <ul>
+              <li><strong><i class="fas fa-phone-alt" aria-hidden="true"></i></strong> {{contactus[0].contactNo}}</li>
+              <li><strong><i class="fa fa-envelope" aria-hidden="true"></i></strong> {{contactus[0].emailId}}</li>
+            </ul>
+            <ul>
+              <li><strong><i class="fas fa-phone-alt" aria-hidden="true"></i></strong> {{contactus[1].contactNo}}</li>
+              <li><strong><i class="fa fa-envelope" aria-hidden="true"></i></strong> {{contactus[1].emailId}}</li>
+            </ul>
+            <ul style="border-bottom: none;">
+              <li><strong><i class="fas fa-phone-alt" aria-hidden="true"></i></strong> {{contactus[2].contactNo}}</li>
+              <li><strong><i class="fa fa-envelope" aria-hidden="true"></i></strong> {{contactus[2].emailId}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light " (click)="modal.close('Close click')">Close</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,134 @@
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-light unique-color main_nav_bar" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/home']">
+      <img src="assets/images/m_logo.png" alt="logo" class="m_logo"></a>
+  </mdb-navbar-brand>
+  <links>
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown" dropdown *ngFor="let menuItem of menuItems"
+        [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" [routerLink]="['/', menuItem.url]" id="navbarDropdown" role="button"
+          aria-controls="navbarDropdown" dropdownToggle>
+          {{menuItem.menu_Name}}
+          <i class="fa fa-caret-down" *ngIf="menuItem.sub_menus"></i>
+        </a>
+        <ul class="submenu dropdown-menu" *ngIf="menuItem.sub_menus">
+          <li class="nav-item dropdown" dropdown *ngFor="let submenuItem of menuItem.sub_menus">
+            <a class="dropdown-item" [routerLink]="['/',submenuItem.servlet_name]">
+              {{submenuItem.submenu_name}}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item">
+        <a class="nav-link waves-light user_manual" mdbWavesEffect [routerLink]="['/user-manual']">
+          User Manual
+          <i class="fa fa-question-circle"></i></a>
+      </li>
+      <li class="nav-item">
+        <!--Cart Part-->
+        <div *ngIf="usersesionDetails.userGroupAccessResponse.orderAccess" class="cart_popup">
+          <!-- <div class="cart_popup" *ngIf="userType && userType !== 'GUEST'"> -->
+          <table class="ecommerce-links">
+            <tr class="top-cart-icon">
+              <td>
+                <br />
+                <span *ngIf="dealerdetail!=''" style="font-weight:400; padding: 10px 15px 0 0;">
+                  Dealer Name : {{dealerdetail}}
+                </span>
+              </td>
+              <td *ngIf="selfSelection !== 'SELF'">
+                <a href="javascript:;" id="showCartIcon" (click)="showCart = !showCart">
+                  <img src="assets/images/ecommerce-icon3.png" alt="" /></a><span
+                  class="cart-num">{{cartItemCount}}</span>
+              </td>
+            </tr>
+            <tr class="mini-cart" *ngIf="showCart" (clickOutside)="onClickOutside($event)">
+              <table *ngIf="(cartItems && cartItems.length); else emptyCart" id="cart"
+                class="table table-hover table-condensed">
+                <thead>
+                  <tr>
+                    <th style="width:40%">Product</th>
+                    <th style="width:30%">Quantity</th>
+                    <th style="width:30%">Remove</th>
+                  </tr>
+                </thead>
+                <tr *ngFor="let item of cartItems;">
+                  <td>
+                    <h3 class="item-title">{{item.variant_number}}</h3>
+                  </td>
+                  <td class="update_qty">
+                    <div class="bt_calculation">
+                      <a class="left" (click)="updateCart(item, 'decrement')" href="javascript:;"><strong>-</strong></a>
+                      <span class="qty">{{item.qty}}</span>
+                      <a class="right" (click)="updateCart(item, 'increment')"
+                        href="javascript:;"><strong>+</strong></a>
+                    </div>
+                  </td>
+                  <td>
+                    <button class="close-icon btn btn-danger btn-sm ml-3" (click)="removeFromCart(item)"><i
+                        class="fa fa-trash"></i></button>
+                    <span class="num-item"></span>
+                  </td>
+                </tr>
+              </table>
+              <table class="table table-hover table-condensed">
+                <tr>
+                  <td colspan="4">
+                    <ng-template #emptyCart><span class="no_item">No item added to the cart!</span></ng-template>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="sub-total-label">Subtotal</span>
+                  </td>
+                  <td class="cart-total">
+                    <span class="total-price"><i class="fa fa-inr" aria-hidden="true"></i>Rs.
+                      {{grandTotal | formatPrice}}</span>
+                  </td>
+                  <td class="cart-total">
+                    <span class="total-quinty">{{cartItemCount}}</span>
+                  </td>
+                  <td>
+                    <a (click)="goToCheckout();" href="javascript:;"
+                      class="btn-5 action-div btn btn-success ">Checkout<i class="fa fa-angle-right ml-2"></i></a>
+                  </td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary drop_profile" style="width: 260px; margin-top:8px;">
+              <a class="dropdown-item text_color">Profile Information</a>
+              <div class="card card_align">
+                <div class="card_boder"><i class="fa fa-user" aria-hidden="true"></i>{{userDetails.userName}}
+                </div>
+                <div class="card_boder"><i class="fa fa-address-card" aria-hidden="true"></i>{{userType}}
+                </div>
+                <div class="card_boder"> <i class="fa fa-id-badge" aria-hidden="true"></i>{{userDetails.loginId}}</div>
+                <div class="card_boder"><i class="fa fa-envelope-open" aria-hidden="true"></i>{{userDetails.emailId}}
+                </div>
+                <div class="card_boder"><i class="fa fa-shopping-cart" aria-hidden="true"></i>{{userGroup}}
+                </div>
+              </div>
+              <a class="dropdown-item text_color log_out" (click)="logout()"><i class="fa fa-power-off"
+                  aria-hidden="true"></i> Logout</a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
+<!--/.Navbar-->

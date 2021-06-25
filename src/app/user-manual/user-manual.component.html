@@ -1,0 +1,25 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>User Manual</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-6 mx-auto">
+                <div class="jumbotron" >
+                    <div><a (click)="downloadMyFile()"><u>{{userType}} - Download PDF</u></a></div>
+    
+                    <!-- <div class="pt-3 text-success" *ngIf="pdfSuccessMsg"> {{pdfSuccessMsg}} </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

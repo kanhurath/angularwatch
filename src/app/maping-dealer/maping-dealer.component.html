@@ -1,0 +1,120 @@
+<div class="main_header">
+    <a><img src="assets/images/m_logo.png" alt="logo" class="m_logo"></a>
+</div>
+<!--Header Part End-->
+<div class="user_section">
+    <mdb-carousel class="carousel slide carousel-fade" [animation]="'fade'">
+        <mdb-carousel-item>
+            <img class="d-block w-100" src="assets/images/Titan_neo_mood_2_2.jpg" alt="slide">
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+            <img class="d-block w-100" src="assets/images/Titan_neo_mood_1_2.jpg" alt="slide">
+        </mdb-carousel-item>
+        <mdb-carousel-item>
+            <img class="d-block w-100" src="assets/images/Titan_neo_mood_3_3.jpg" alt="slide">
+        </mdb-carousel-item>
+    </mdb-carousel>
+    <div class="card text-center md_box col-lg-4 col-md-4 col-xs-6 "
+        *ngIf="(checkUserType === 'SO') || (checkUserType === 'ABM')">
+        <h3 class="card-header">User Selection</h3>
+        <!--radio button-->
+        <div class="checkboxes">
+            <div class="checkboxgroup radio-warning">
+                <label for="my_radio_button_id1">
+                    <input type="radio" name="selectedUserType" value="DD" [(ngModel)]="selectedUserType" class="gap_ra"
+                        id="my_radio_button_id1" (click)="onUserTypeSelect('DD')" (click)="resetForm()"/>
+                    DD</label>
+            </div>
+            <div class="checkboxgroup radio-warning">
+                <label for="my_radio_button_id3">
+                    <input type="radio" name="selectedUserType" value="RS" [(ngModel)]="selectedUserType" class="gap_ra"
+                        id="my_radio_button_id3" (click)="onUserTypeSelect('RS')" (click)="resetForm()"/>
+                    RS</label>
+            </div>
+
+            <div class="checkboxgroup radio-warning">
+                <label for="my_radio_button_id4">
+                    <input type="radio" name="selectedUserType" value="SELF" [(ngModel)]="selectedUserType"
+                        class="gap_ra" id="my_radio_button_id4" (click)="onUserTypeSelect('SO')" (click)="resetForm()"/>
+                    All</label>
+            </div>
+        </div>
+        <!---radio end FOR SO--->
+        <div class="row justify-content-center align-items-center">
+            <form [formGroup]="dealerForm" (ngSubmit)="onFormSubmit()" class="dealer-form">
+                <mat-form-field class="select-dealer" *ngIf="hideUserSection">
+                    <input type="text" placeholder="Select a User" matInput formControlName="dealer"
+                        [matAutocomplete]="auto" [disabled]="!selectedUserType">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let dealer of $filteredDealers | async" [value]="dealer">
+                            <!-- <input type="radio" class="form-check-input mt-3 ml-1" name="optradio" (change)="handleChange($event)"><span -->
+                            <input type="radio" class="form-check-input mt-3 ml-1" name="optradio"
+                                formControlName="optradio"><span class="pl-4"></span> {{dealer.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="dealer.hasError('required')">
+                        Dealer Required.
+                    </mat-error>
+                </mat-form-field>
+                <br />
+                <button mat-raised-button>Submit</button>
+                <button mat-raised-button type="button" class="ml-2" (click)="resetForm()">Reset</button>
+            </form>
+        </div>
+        <!----Club & Star Club Dealer-->
+        <div class="row" *ngIf="checkUserType ==='SO'">
+            <div class="col-sm-12 text-left" *ngIf="loginResponse.dealersList[0].no_of_Club_Dealers!=''" >
+                <i class="fa fa-street-view" aria-hidden="true"></i> Club Dealers <b>:
+                {{loginResponse.dealersList[0].no_of_Club_Dealers}}</b>
+            </div>
+            <div class="col-sm-12 text-left" *ngIf="loginResponse.dealersList[0].no_of_Star_Club_Dealers!=''">
+                <i class="fa fa-universal-access" aria-hidden="true"></i> Star Club Dealers <b>:
+                    {{loginResponse.dealersList[0].no_of_Star_Club_Dealers}}</b>
+            </div>
+        </div>
+    </div>
+
+    <!--UserType RE-->
+    <div class="card text-center md_box col-lg-4 col-md-4 col-xs-6 " *ngIf="checkUserType === 'Retail Executive'">
+        <h3 class="card-header">User Selection</h3>
+        <div class="checkboxes">
+            <div class="checkboxgroup radio-warning">
+                <label for="my_radio_button_id1">
+                    <input type="radio" name="selectedUserType" value="ST" [(ngModel)]="selectedUserType" class="gap_ra"
+                        id="my_radio_button_id1" (click)="onUserTypeSelect('ST')" (click)="resetForm()"/>
+                    Stores</label>
+            </div>
+            <div class="checkboxgroup radio-warning">
+                <label for="my_radio_button_id4">
+                    <input type="radio" name="selectedUserType" value="SELF" [(ngModel)]="selectedUserType"
+                        class="gap_ra" id="my_radio_button_id4" (click)="onUserTypeSelect('RE-SELF')" (click)="resetForm()" />
+                    All</label>
+            </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <form [formGroup]="dealerForm" (ngSubmit)="onFormSubmit()" class="dealer-form">
+                <mat-form-field class="select-dealer" *ngIf="hideUserSection">
+                    <input type="text" placeholder="Select a User" matInput formControlName="dealer"
+                        [matAutocomplete]="auto" [disabled]="!selectedUserType">
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                        <mat-option *ngFor="let dealer of $filteredDealers | async" [value]="dealer">
+                            <input type="radio" class="form-check-input mt-3 ml-1" name="optradio"
+                                formControlName="optradio" formControlName="dealer"><span class="pl-4"></span>
+                            {{dealer.name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="dealer.hasError('required')">
+                        Dealer Required.
+                    </mat-error>
+                </mat-form-field>
+                <br />
+                <button mat-raised-button>Submit</button>
+                <button mat-raised-button type="button" class="ml-2" (click)="resetForm()">Reset</button>
+            </form>
+        </div>
+
+    </div>
+    <!--UserType RE END-->
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

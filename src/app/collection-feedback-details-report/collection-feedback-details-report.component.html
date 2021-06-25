@@ -1,0 +1,106 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>Collection Details Reports </strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div style="margin-top: 4%;">
+        <div class="indent_title">Collection Feedback Details Report</div>
+        <button class="btn btn-primary" mat-raised-button (click)="exportAsExcel()">Excel</button>
+        <div class="mini_cart" #TABLE>
+            <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px;" [rows]="collectionFeedbackDetails"
+                [columnMode]="'force'" [headerHeight]="50"  [scrollbarH]="true" [footerHeight]="50" [rowHeight]="40" [scrollbarV]="true"
+                [sorts]="[{prop: 'name', dir: 'desc'}]">
+
+            <!-- <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px; overflow-y:auto;
+                border: 1px solid #d0d0d0;" [rows]="collectionFeedbackDetails" [columnMode]="'force'"
+                [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [limit]="10"
+                [sorts]="[{prop: 'name', dir: 'desc'}]"> -->
+
+                <ngx-datatable-column [minWidth]="40" name="Dealer Number" prop="dealerName">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.dealerName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="SAP Code" prop="dealerCode">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.dealerCode}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="User Type">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.userType}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Brand">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.brand}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Collection">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.collection}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Hero Variant Number" prop="variant_number">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.variant_number}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Price">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.price}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Look">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.look}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Others">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.others}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Feedback Date">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.feedbackDate}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="SO Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.soName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="ABM Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.abmName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="RBM Code">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.rbmName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

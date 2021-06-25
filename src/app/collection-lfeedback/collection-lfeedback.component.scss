@@ -1,0 +1,53 @@
+.m_collfeed {
+  padding-top: 2vh;
+  padding-bottom: 6vh;
+}
+.collection_tit {
+  font-weight: 500;
+  color: #4c4c4c;
+  font-size: x-large;
+}
+.success_msg {
+  color: green;
+}
+.sub_fed {
+  font-size: 14px;
+}
+.rela_div {
+  position: relative;
+}
+.sub_fed .spinner-border{
+  font-size: 16px;
+  background: rgb(74, 151, 252);
+  position: absolute;
+  left:calc(50% - 20px);
+}
+.v_img {
+  position: absolute;
+  top: 30vh;
+  right: 18%;
+  padding-left: 5px;
+  width: 150px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+@media screen and (max-width: 1200px) {
+  .v_img {
+    top: 0.1vh;
+    width: 80px;
+    right: 28%;
+  }
+}
+@media screen and (max-width: 575px) {
+  .v_img {
+    top: 0.1vh;
+    width: 80px;
+    right: 1%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .v_img {
+    top: 8vh;
+    width: 60px;
+    right: 0.5%;
+  }
+}

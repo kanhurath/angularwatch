@@ -1,0 +1,112 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid m_collfeed">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:;"><strong>Collection feedback</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <section class="col-md-12" style="overflow: hidden;">
+        <div class="col-md-6 offset-md-3 rela_div">
+            <div class="col-sm-9 offset-sm-3 pb-4 pt-3">
+                <h4 class="collection_tit">Collection feedback</h4>
+                <hr style="width:50%;text-align:left;margin-left:0">
+            </div>
+            <div class="success_msg pb-3" *ngIf="collectionfeedbackSuccessMsg">{{collectionfeedbackSuccessMsg}}</div>
+            <form [formGroup]="collectionFeedbackForm" (submit)="saveCollectionFeedback()">
+                <div class="form-group row">
+                    <label class="control-label col-md-4">Brand <span style="color: red;">*</span></label>
+                    <div class="controls col-md-7">
+                        <select formControlName="brand" class="custom-select col-md-12" id="inlineFormCustomSelect"
+                            name="selectedBrand" (ngModelChange)="setCollection($event)" #selectedBrand>
+                            <option value="">Select Brand</option>
+                            <option *ngFor="let brand of brands" [value]="brand.brandName">{{brand.brandName}}</option>
+                        </select>
+                        <div *ngIf="f.brand.errors && (formSubmitted || f.brand.touched)" class="valError">
+                            <div *ngIf="f.brand.errors.required" style="color:#980101">Please Select Brand Name.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">Collection <span style="color: red;">*</span></label>
+                    <div class="controls col-md-7 ">
+                        <select (ngModelChange)="setVariant($event)" formControlName="collection"
+                            class="custom-select col-md-12" id="inlineFormCustomSelect">
+                            <option value="">Select Collection</option>
+                            <option *ngFor="let collection of collections" [value]="collection.collectionName">
+                                {{collection.collectionName}}</option>
+                        </select>
+                        <div *ngIf="f.collection.errors && (formSubmitted || f.collection.touched)" class="valError">
+                            <div *ngIf="f.collection.errors.required" style="color:#980101">Please Select Collection
+                                Name.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label col-md-4">
+                        Hero Variant Number
+                        <span *ngIf="fetchVarientsInProgress" class="spinner-border spinner-border-sm ml-2"></span>
+                    </label>
+                    <div class="controls col-md-7 ">
+                        <select formControlName="variant_number" size='4' class="custom-select col-md-12"
+                            id="inlineFormCustomSelect" (ngModelChange)="displayImage($event)">
+                            <option value="">Select Variant Number</option>
+                            <option id="show" *ngFor="let variant of allVariant" [value]="variant.variantNumber">
+                                {{variant.variantNumber}}</option>
+                        </select>
+                        <!-- <select formControlName="variant_number" onfocus='this.size=8;' onblur='this.size=1;'
+                        onchange='this.size=1; this.blur();' class="custom-select col-md-12" id="inlineFormCustomSelect"
+                        (ngModelChange)="displayImage($event)">
+                        <option value="">Select Variant Number</option>
+                        <option id="show" *ngFor="let variant of allVariant" [value]="variant.variantNumber">
+                            {{variant.variantNumber}}</option>
+                    </select> -->
+                        <!-- <div *ngIf="f.variant_number.errors && (formSubmitted || f.variant_number.touched)" class="valError">
+                        <div *ngIf="f.variant_number.errors.required" style="color:#980101">Please Select Variant.</div>
+                    </div>-->
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label requiredField col-md-4">Feedback on Price</label>
+                    <div class="controls col-md-7">
+                        <textarea formControlName="price" [(ngModel)]="priceretrivevalue" class="form-control"
+                            rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label requiredField col-md-4">Feedback on Look</label>
+                    <div class="controls col-md-7">
+                        <textarea formControlName="look" [(ngModel)]="lookretrivevalue" class="form-control"
+                            rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="control-label requiredField col-md-4">Others Feedback</label>
+                    <div class="controls col-md-7">
+                        <textarea formControlName="others" [(ngModel)]="othersretrivevalue" class="form-control"
+                            rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-4 offset-md-4 sub_fed">
+                    <button type="submit" class="btn btn-primary">
+                        <span class="spinner-border spinner-border-sm mr-2" *ngIf="submitInProgress"></span>
+                        Submit Feedback</button>
+                    <!-- <button type="submit" [disabled]="collectionFeedbackForm.invalid || submitInProgress" 
+                class="btn btn-primary">
+                <span class="spinner-border spinner-border-sm mr-2" *ngIf="submitInProgress"></span>
+                Submit Feedback</button> -->
+                </div>
+            </form>
+        </div>
+        <div cdkDrag class="rounded v_img box" *ngIf="variantImage">
+            <img src="{{variantImage}}" class="img-fluid rounded" onerror="this.src='assets/images/no_images.png';" /></div>
+        <div cdkDrag class="v_img box" *ngIf="!variantImage"> No Image Found </div>
+    </section>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

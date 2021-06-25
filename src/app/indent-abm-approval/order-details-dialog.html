@@ -1,0 +1,46 @@
+<!-- <h2 mat-dialog-title>Install Angular</h2>-->
+<!-- <mat-dialog-content class="mat-typography"> -->
+<div class="container-fluid pt-1 mb-5 order_details" style="margin-top: 2%;">
+     <span class="close" mat-button mat-dialog-close>X</span>
+    <div class="row pb-2">
+        <div class="dl_name col-md-12 pb-2">Dealer Name: {{order.dealer}}</div>
+            <div class="or_number col-md-6">Order Number: {{order.orderNumber}}</div>
+            <div class="or_date col-md-6 text-right">Order Date: {{order.orderDate}}</div>
+    </div>
+    <div class="mini_cart">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr class="table-primary">
+                    <th>SL NO</th>
+                    <th>Variant No</th>
+                    <th>Requested Qty</th>
+                    <th>Approved Qty</th>
+                </tr>
+            </thead>
+            <tr *ngFor="let item of orderItems; let i = index;">
+                <td>
+                    <span class="qty">{{i+1}}</span>
+                </td>
+                <td>
+                    <span class="qty">{{item.variantNumber}}</span>
+                </td>
+                <td>
+                    <span class="qty">{{item.requestedQty}}</span>
+                </td>
+                <td>
+                    <span class="qty">
+                        <input type="text" [value]="item.requestedQty" />
+                    </span>
+                </td>
+            </tr> 
+        </table>
+    </div>
+    <button class="btn btn-primary m-2 text-center" >Approve</button>
+</div>
+
+
+<!-- </mat-dialog-content> -->
+<!-- <mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions> -->

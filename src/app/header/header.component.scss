@@ -1,0 +1,139 @@
+mdb-navbar {
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.navbar-nav .nav-item .nav-link {
+  transition: 0.35s;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  color: #76777b !important;
+  font-weight: 400;
+}
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-menu .dropdown-item {
+  font-size: 14px;
+  font-weight: 500;
+  color: #a79d9d;
+}
+.action-div {
+  font-size: 14px;
+  float: right;
+}
+.text_color {
+  color: #4a4a4a !important;
+}
+.log_out {
+  border-top: 1px solid #e0e0e0;
+  padding-left: 20px !important;
+}
+.card_align {
+  font-size: 14px;
+  line-height: 1.5rem;
+  padding: 2px;
+  border: none;
+}
+.card_boder {
+  border-top: 1px solid #e0e0e0;
+  padding: 4px 4px;
+}
+.card_boder i.fa-shopping-cart:before {
+  font-family: FontAwesome;
+}
+.update_qty {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 14px;
+}
+.bt_calculation {
+  border: 1px solid #d8d8d8;
+  text-align: center;
+  padding: 2px;
+}
+.sub-total-label,
+.cart-total {
+  font-size: 16px;
+  font-weight: 500;
+}
+.card_boder .fa,
+.fas {
+  font-family: "Font Awesome 5 Free";
+  /* font-weight: 900; */
+  font-weight: 500;
+  font-size: 20px;
+  padding: 6px;
+}
+.no_item {
+  padding: 4%;
+  color: red;
+  font-size: 16px;
+  line-height: 30px;
+}
+table {
+  color: #848484;
+}
+.ecommerce-links {
+  list-style-type: none;
+  padding: 14px 0 0 5px;
+}
+.ecommerce-links td {
+  position: relative;
+}
+.top-cart-icon {
+  position: relative;
+}
+.cart-num {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #000;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  line-height: 25px;
+  // margin: 0.2% 4.3% 0 0;
+}
+.mini-cart {
+  position: absolute;
+  right: 0;
+  top: 52px;
+  background: #fff;
+  width: 450px;
+  border: 1px solid #d6d6d6;
+  z-index: 99;
+  margin-right: 10px;
+}
+ul li .user_manual {
+  padding-top: 3vh;
+  padding-right: 20px;
+  font-size: 14px;
+}
+@media screen and (max-width: 991px) {
+  .mini-cart {
+    right: auto;
+    left: 0;
+    width: 300px;
+  }
+  .cart_popup {
+    position: relative;
+  }
+}
+@media screen and (max-width: 475px) {
+  .mini-cart {
+   margin-left: -94px;
+  }
+}
+@media screen and (max-width: 441px) {
+  .cart-num {
+    top: 8px;
+  }
+  .mini-cart {
+    margin-top: 18px;
+   }
+   .drop_profile{
+     margin-top: 18px!important;
+   }
+}

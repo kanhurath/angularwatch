@@ -1,0 +1,69 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>ECOM Indent Reports </strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div style="margin-top: 4%;">
+        <div class="indent_title">ECOM Indent Reports</div>
+        <button class="btn btn-primary" mat-raised-button (click)="exportAsExcel()">Excel</button>
+        <div class="mini_cart" #TABLE>
+            <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px;" [rows]="ECOMReportData"
+                [columnMode]="'force'" [headerHeight]="50"  [scrollbarH]="true" [footerHeight]="50" [rowHeight]="40" [scrollbarV]="true"
+                [sorts]="[{prop: 'name', dir: 'desc'}]">
+
+                <ngx-datatable-column [minWidth]="40" name="Variant Number">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.variantNumber}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Order Date" prop="order_Date">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.order_Date}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Total UCP" prop="total_UCP">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.total_UCP}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Order Number" prop="order_Number">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.order_Number}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="CFA Location" prop="cfa_Location">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.cfa_Location}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="QTY">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.qty}}
+                    </ng-template>
+                </ngx-datatable-column>
+                
+                <ngx-datatable-column name="ECOM Partner">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.ecomPartner}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+        </div>
+  
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

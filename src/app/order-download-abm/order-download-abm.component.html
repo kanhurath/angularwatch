@@ -1,0 +1,25 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>ABM Order Download</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container cnt_body">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 pb-4 pt-3">
+                <h4 class="text-center">ABM Order Downloading</h4>
+            </div>
+            <div class="d_abmorder col-md-6">
+                <div class="alert-success pb-2" *ngIf="ABMOrderDownloadingSuccessMsg">{{ABMOrderDownloadingSuccessMsg}}</div>
+                <button class="btn fou_bt" (click)="download()"><i class="fa fa-download"></i> Download</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

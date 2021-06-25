@@ -1,0 +1,97 @@
+
+/****** Style Half Star Rating *****/
+fieldset, label {
+  margin: 0; 
+  padding: 0; 
+}
+.rating { 
+ border: none;
+ float: left;
+}
+.rating > input { display: none; } 
+.rating > label:before { 
+ margin: 8px;
+ font-size: 2em;
+ font-family: FontAwesome;
+ display: inline-block;
+ content: "\f005";
+}
+
+.rating > .half:before { 
+ content: "\f089";
+ position: absolute;
+}
+
+.rating > label { 
+ color: #ddd; 
+float: right; 
+}
+/***** CSS Highlight Stars on Hover *****/
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } 
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+//*Half Star Rating End
+
+.list-group .list-group-item {
+ color: #696969;
+}
+.rev {
+ font-weight: 500;
+ font-size: 14px;
+ padding-top: 20px;
+}
+.checked {
+ color: #ff0000;
+ font-size: xx-small;
+}
+.rating-list {
+ display: inline-block;
+ list-style: none;
+}
+.cont_style {
+ font-weight: 500;
+ color: #851d1d;
+ font-size: 14px;
+}
+.rf_part {
+ background: #f7f7f7;
+ border-top: 1px solid #dcdcdc;
+ line-height: 10px;
+}
+.success_msg {
+ color: green;
+}
+.valError {
+ color: red;
+ margin-top: 10px;
+}
+
+.rating_name{
+ font-size: 14px;
+ text-decoration: none;
+ font-weight: 200;
+ color: #d12727;
+}
+.btn-primary {
+ margin-left: 16px;
+}
+.coll_fedback{
+ line-height: normal;
+}
+@media screen and (max-width: 575px) {
+  .excellent{
+    padding-left: 4rem!important;
+  }
+}
+// @media screen and (max-width: 393px) {
+
+// }
+
+
+

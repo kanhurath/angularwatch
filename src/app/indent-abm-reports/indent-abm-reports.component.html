@@ -1,0 +1,110 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+        <li class="breadcrumb-item"><a><strong>Indent Summary Reports </strong></a></li>
+      </ol>
+    </nav>
+  </div>
+  <div style="margin-top: 4%;">
+    <div class="indent_title">Indent Summary Reports</div>
+    <button class="btn btn-primary" mat-raised-button (click)="exportAsExcel()">Excel</button>
+    <div class="mini_cart" #TABLE>
+      <!-- <button mat-raised-button (click)="exportAsExcel()">Excel</button>
+            <table class="ecommerce-links table table-hover text-center">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Indent Number</th>
+                        <th>DealerName</th>
+                        <th>Indent Date</th>
+                        <th>ABM Code</th>
+                        <th>ABM Name</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let indent of indentDetails; let i = index;">
+                    <td>
+                        <a class="qty">{{indent.indentNumber}}</a>
+                    </td>
+                    <td>
+                        <span class="qty">{{indent.dealer}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{indent.indentDate}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{indent.abmCode}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{indent.abmName}}</span>
+                    </td>
+                </tr>
+                <tr *ngIf="!indentDetails.length">
+                    <td>Indent Details Not Found!</td>
+                </tr>
+            </table> -->
+
+
+      <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px;" [rows]="indentDetails"
+        [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="40" [scrollbarV]="true"
+        [sorts]="[{prop: 'name', dir: 'desc'}]">
+
+        <!-- <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px; overflow-y:auto;
+        border: 1px solid #d0d0d0;" [rows]="indentDetails" [columnMode]="'force'" [headerHeight]="50"
+        [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [limit]="10"
+        [sorts]="[{prop: 'name', dir: 'desc'}]"> -->
+
+        <ngx-datatable-column name="Indent Number">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.indentNumber}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Dealer Code">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.dealerName}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Indent Date">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.indentDate}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="ABM Code">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.abmcode}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="ABM Name">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.abmname}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="QTY">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.qty}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="UCP">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.ucp}}
+          </ng-template>
+        </ngx-datatable-column>
+        <!-- <ngx-datatable-column name="Line Item">
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      {{row.lineItem}}
+    </ng-template>
+  </ngx-datatable-column>
+   -->
+      </ngx-datatable>
+    </div>
+  </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

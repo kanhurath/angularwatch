@@ -1,0 +1,47 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 feedback_body">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>Review Approval</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div style="margin-top: 4%;">
+        <div class="indent_title">New Product Feedback Summary</div>
+        <div class="mini_cart">
+            <table class="ecommerce-links table table-hover text-center">
+                <thead>
+                    <tr class="table-primary">
+                        <th>VARIANT_NUMBER</th>
+                        <th>DEALER</th>
+                        <th>Rating</th>
+                        <th>Comment</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let feedback of feedbacks;">
+                    <td>
+                        <span class="qty">{{feedback.variantNumber}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{feedback.dealerName}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{feedback.rating}}</span>
+                    </td>
+                    <td>
+                        <textarea>{{feedback.feedbacktext}}</textarea>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Approve</button>
+                    </td>
+                </tr>               
+            </table>
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

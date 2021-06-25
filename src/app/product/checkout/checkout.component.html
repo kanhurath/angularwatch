@@ -1,0 +1,82 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5">
+  <div class="row">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+        <li class="breadcrumb-item"><a [routerLink]="['/catalogue']">Catalogue</a></li>
+        <li class="breadcrumb-item"><a href="javascript:;"><strong>Checkout</strong></a></li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="container mid-wrapper mt-5">
+    <div class="indent_title">Indenting Detail</div>
+    <div class="table-responsive">
+        <table *ngIf="(cartItems && cartItems.length); else emptyCart" id="cart"
+          class="table table-hover table-condensed text-center">
+          <thead>
+            <tr class="table-primary">
+              <th>Product</th>
+              <th>UCP(Rs)</th>
+              <th>Quantity</th>
+              <th>Total Price(Rs)</th>
+              <th>Remove</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let item of cartItems;">
+            <td>
+              <!-- <h3 class="item-title">{{item.variant_number}}</h3> -->
+              <span class="qty">{{item.variant_number}}</span>
+            </td>
+            <td>
+              <span class="qty">{{item.ucp | formatPrice}}</span>
+            </td>
+            <td class="update_qty">
+              <div class="bt_calculation">
+                <a class="left" (click)="updateCart(item, 'decrement')" href="javascript:;"><strong>-</strong></a>
+                <span class="qty">{{item.qty}}</span>
+                <a class="right" (click)="updateCart(item, 'increment')" href="javascript:;"><strong>+</strong></a>
+              </div>
+            </td>
+            <td>
+              <span class="qty">{{(item.ucp * item.qty) | formatPrice}}</span>
+            </td>
+            <td>
+              <button class="close-icon btn btn-danger btn-sm ml-3" (click)="removeFromCart(item)"><i
+                  class="fa fa-trash"></i></button>
+              <span class="num-item"></span>
+            </td>
+          </tr>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-condensed table-hover tab_second text-center">
+        <tr class="table-primary">
+          <td colspan="5">
+            <ng-template #emptyCart><span class="no_item">No item added to the cart!</span></ng-template>
+          </td>
+        </tr>
+        <tr *ngIf="cartItems.length">
+          <td class="cart-total">
+            <button type="button" class="btn btn-primary" (click)="placeOrder()">Create Indent</button>
+          </td>
+          <td>
+            <span class="sub-total-label">Total Qty. : </span>
+            <a href="javascript:;"></a><span class="cart-num">{{cartItemCount}}</span>
+          </td>
+          <td style="border-right: 1px solid #d9d9da">
+            <span class="sub-total-label">Total Value : </span>
+            <span class="total-price"><i class="fa fa-inr" aria-hidden="true"></i>Rs.
+              {{grandTotal | formatPrice}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!--Footer Part-->
+<app-footer></app-footer>

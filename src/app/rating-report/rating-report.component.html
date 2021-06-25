@@ -1,0 +1,96 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>Rating Reports </strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div style="margin-top: 4%;">
+        <div class="indent_title">Rating Report Provided by SO/ABM/RBM</div>
+        <button class="btn btn-primary" mat-raised-button (click)="exportAsExcel()">Excel</button>
+        <div class="mini_cart" #TABLE>
+            <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px;"
+                [rows]="RatingReportData" [columnMode]="'force'" [headerHeight]="50" [scrollbarH]="true"
+                [footerHeight]="50" [rowHeight]="40" [scrollbarV]="true" [sorts]="[{prop: 'name', dir: 'desc'}]">
+
+                <!-- <ngx-datatable #myTable id="exportable" class="material striped" style="height: 340px; overflow-y:auto;
+            border: 1px solid #d0d0d0;" [rows]="RatingReportData" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [limit]="10"
+                [sorts]="[{prop: 'name', dir: 'desc'}]"> -->
+
+                <ngx-datatable-column name="Dealer Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.dealerName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="SAPCode" prop="sapCode">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.sapCode}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="UserType">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.userType}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="SO Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.soName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="ABM Name">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.abmName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="RBM Code">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.rbmName}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Brand">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.brand}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Collection">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.collection}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Variant Number">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.variantNumber}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="Rating">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.rating}}
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Rating Date">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        {{row.ratingDate}}
+                    </ng-template>
+                </ngx-datatable-column>
+
+            </ngx-datatable>
+
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>

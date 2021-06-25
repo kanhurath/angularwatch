@@ -1,0 +1,94 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid m_catlogue">
+    <div class="row">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:;"><strong>Catalogue</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <button type="button" class="btn btn-default btn-sm side_list " (click)=toggleDisplay()>
+        <i class="fa fa-bars" aria-hidden="true" style="padding: 10px;"></i>
+    </button>
+    <div class="row">
+        <div class="col-lg-2 appcat_side">
+            <div class="appcat_position" [hidden]='isShow'>
+                <div class="card mb-3">
+                    <div class="catalogue_left_filters brand_container">
+                        <span class="catalog_left_filter_header">BRANDS</span>
+                        <ul class="categories-list brand_sidebar_y">
+                            <li>&nbsp;</li>
+                            <li *ngFor="let item of brands" class="no-outline">
+                                <label mdbTooltip="{{item.brandName}}" placement="top" mdbWavesEffect
+                                    class="common-customCheckbox catalog_left_filter_label">
+                                    <input #checkboxes type="checkbox"
+                                        [checked]="selectedBrands.includes(item.brandName)"
+                                        (click)="onChangeBrand(item.brandName, $event.target.checked)">
+                                    {{item.brandName}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="catalogue_left_filters brand_container">
+                        <span class="catalog_left_filter_header">Collections [Launch Date]</span>
+                        <ul class="categories-list collection_sidebar_y">
+                            <li>&nbsp;</li>
+                            <li *ngFor="let item of collections" class="no-outline">
+                                <label mdbTooltip="{{item.collectionName}},{{item.launchPeriod}}" placement="top"
+                                    mdbWavesEffect class="common-customCheckbox catalog_left_filter_label">
+                                    <input type="checkbox" [checked]="selectedCollections.includes(item.collectionName)"
+                                        (click)="onChangeCollection(item.collectionName, $event.target.checked)">
+                                    {{item.collectionName}}:{{item.launchPeriod}}
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <button class="btn btn_reset" (click)="resetFilter()">Clear Selection</button>
+                </div>
+            </div>
+        </div>
+        <!--Catalogue Body Part-->
+        <div class="col-lg-10 col-md-12 col-sm-12 appcat_body">
+            <div class="container">
+                <div *ngIf="isLoading" class="row align-items-center flex-column pt-5">
+                    <i class="fa fa-spinner fa-spin" style="font-size:36px;"></i>
+                </div>
+                <div *ngIf="!isLoading" class="row all_product">
+                    <div class="col-md-3 col-sm-6" *ngFor="let item of pagedItems; trackBy: trackByMethod">
+                        <div class="product-grid7">
+                            <div class="product-image7">
+                                <a href="#!" [routerLink]="['/product-detail', item.variantNumber]">
+                                    <img class="pic-1" src="{{item.imageLocation}}"
+                                        onerror="this.src='assets/images/no_images.png';">
+                                </a>
+                            </div>
+                            <div class="product-content">
+                                <ul class="rating">
+                                    <li class="fa fa-star" *ngFor="let i of stars"
+                                        [ngClass]="{'disable': i > item.feedback}"></li>
+                                </ul> 
+                                <p *ngIf="item.avg_Rating | number: '1.1-1'"><i class="fa fa-star"></i> {{item.avg_Rating | number: '1.1-1'}} | <i
+                                        class="fa-user fas"></i>
+                                    {{item.countOfRating}}</p>
+                                <p>{{item.name}} | {{item.collection}}</p>
+                                <h3 class="title"> {{item.variantNumber}} </h3>
+                                <div class="price">Rs. {{item.price}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-4 noproduct_found" *ngIf="!products?.length">No Collection
+                    Selected. Please select any available Collection!</div>
+                </div>
+                <div class="row" *ngIf="!isLoading && currPage < totalPages">
+                    <div class="col-md-2 offset-md-5 mt-2 mb-2 bt_text">
+                        <button type="button" class="btn btn-primary" (click)="loadMore();">Load More...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Catalogue Body Part End-->
+    </div>
+</div>
+<app-footer></app-footer>

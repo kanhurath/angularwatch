@@ -1,0 +1,63 @@
+// .fileupload_section{
+//   min-height: 50.7vh;
+// }
+.gap_ra {
+  margin-right: 10px;
+  margin-top: -20px;
+}
+.checkboxes {
+  margin-top: -20px;
+}
+.checkboxgroup {
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem;
+}
+.checkboxgroup label {
+  display: block;
+}
+input[type="radio"] {
+  transform: scale(1.4);
+}
+
+
+.bt_soupload {
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.mb-5, .my-5 {
+  margin-bottom: 17rem !important;
+}
+.progress {
+margin-left: 20px!important;
+margin-right: 20px!important;
+}
+.upload_body{
+width: 60%;
+height:40%;
+position: absolute;
+transform: translate(-50%, -50%);
+z-index: 99;
+top: 40%;
+left: 50%;
+bottom: 0;
+right: 0;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+padding-top: 20px;
+}
+.sotitle {
+  text-align: center;
+  font-size: 15px;
+  color: brown;
+}
+@media screen and (max-width: 991px) {
+  .upload_body{
+    z-index:-1;
+  }
+}
+@media screen and (max-width: 360px) {
+  .md_box {
+    height: auto;
+  }
+}

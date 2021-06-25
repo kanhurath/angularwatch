@@ -1,0 +1,46 @@
+<!--Header Part-->
+<app-header></app-header>
+<div class="container-fluid pt-1 mb-5 main_orders">
+    <div class="row">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+                <li class="breadcrumb-item"><a><strong>Review Approval</strong></a></li>
+            </ol>
+        </nav>
+    </div>
+    <div style="margin-top: 4%;">
+        <div class="indent_title">ABM – Approval / Edit orders placed by mapped SO’s for Dealers</div>
+        <div class="mini_cart">
+            <table class="ecommerce-links table table-hover text-center">
+                <thead>
+                    <tr class="table-primary">
+                        <th>Order Number</th>
+                        <th>Order Date</th>
+                        <th>DealerName</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tr *ngFor="let order of orders; let i = index;">
+                    <td>
+                        <a class="qty orderNo" (click)="viewOrderDetails(order);">{{order.orderNumber}}</a>
+                    </td>
+                    <td>
+                        <span class="qty">{{order.orderDate}}</span>
+                    </td>
+                    <td>
+                        <span class="qty">{{order.dealer}}</span>
+                    </td>
+                    <td>
+                        <button (click)="approveOrder(order, i)" class="btn btn-primary" >Approve</button>
+                    </td>
+                </tr>
+                <tr *ngIf="!orders.length">
+                    <td>No Order Found!</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<!--Footer Part-->
+<app-footer></app-footer>
